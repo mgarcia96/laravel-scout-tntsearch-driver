@@ -3,6 +3,7 @@
     "description": "Driver for Laravel Scout search package based on https://github.com/teamtnt/tntsearch",
     "keywords": ["tntsearch", "search", "scout", "laravel"],
     "license": "MIT",
+    "version": "3.0.5",
     "authors": [
         {
             "name": "TNT Studio",
