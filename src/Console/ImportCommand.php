@@ -37,6 +37,7 @@ class ImportCommand extends Command
         $tnt = new TNTSearch();        
         $driver = $model->getConnectionName() ?: config('database.default');
         $config = config('scout.tntsearch') + config("database.connections.$driver");
+        $prefix = config("database.connections.$driver")['prefix'];
 
         $tnt->loadConfig($config);
         $tnt->setDatabaseHandle(app('db')->connection($driver)->getPdo());
@@ -51,7 +52,9 @@ class ImportCommand extends Command
             $query = '*';
         }
 
-        $indexer->query("SELECT $query FROM {$model->getTable()};");
+        $table= $prefix . $model->getTable();
+
+        $indexer->query("SELECT $query FROM {$table};");
 
         $indexer->run();
         $this->info('All ['.$class.'] records have been imported.');
